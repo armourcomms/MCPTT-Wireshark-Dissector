@@ -74,8 +74,7 @@ local FIXED_HEADER_LEN = 12
 -- Has to be at least a field ID (8 bits), the value length (8 bits) and a NULL value.
 local MIN_FIELD_LEN = 2
 
--- 3GPP TS 24.380 version 13.0.2 Release 13
--- with 3GPP TS 24.380 version 13.3.0 Release 13 changes to field codes
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- Table 8.2.3.1-2: Floor control specific fields
 local field_codes = {
     [0] = "Floor Priority",
@@ -92,23 +91,25 @@ local field_codes = {
     [11] = "Track Info",
     [12] = "Message Type",
     [13] = "Floor Indicator",
-    [102] = "Floor Priority",
-    [103] = "Duration",
-    [104] = "Reject Cause",
-    [105] = "Queue Info",
-    [106] = "Granted Party's Identity",
-    [108] = "Permission to Request the Floor",
-    [109] = "User ID",
-    [110] = "Queue Size",
-    [111] = "Message Sequence-Number",
-    [112] = "Queued User ID",
-    [113] = "Source",
-    [114] = "Track Info",
-    [115] = "Message Type",
-    [116] = "Floor Indicator"
+    [14] = "SSRC",
+
+    -- [102] = "Floor Priority",
+    -- [103] = "Duration",
+    -- [104] = "Reject Cause",
+    -- [105] = "Queue Info",
+    -- [106] = "Granted Party's Identity",
+    -- [108] = "Permission to Request the Floor",
+    -- [109] = "User ID",
+    -- [110] = "Queue Size",
+    -- [111] = "Message Sequence-Number",
+    -- [112] = "Queued User ID",
+    -- [113] = "Source",
+    -- [114] = "Track Info",
+    -- [115] = "Message Type",
+    -- [116] = "Floor Indicator"
 }
 
--- 3GPP TS 24.380 version 13.0.2 Release 13
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- Table 8.3.3.1-2: Pre-established session call control fields
 local field_codes_pc = {
     [0] = "Media Streams",
@@ -117,10 +118,11 @@ local field_codes_pc = {
     [3] = "MCPTT Group Identity",
     [4] = "Answer State",
     [5] = "Inviting MCPTT User Identity",
-    [6] = "Reason Code"
+    [6] = "Reason Code",
+    [192] = "PCK I_MESSAGE"
 }
 
--- 3GPP TS 24.380 version 13.0.2 Release 13
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- Table 8.2.2-1: Floor control specific messages
 local type_codes = {
     [0] = "Floor Request",
@@ -135,7 +137,7 @@ local type_codes = {
     [10] = "Floor Ack"
 }
 
--- 3GPP TS 24.380 version 13.0.2 Release 13
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- Table 8.3.2-1: Pre-established session call control specific messages
 local type_codes_pc = {
     [0] = "Connect",
@@ -148,6 +150,7 @@ local ack_code = {
     [1] = "ACK Required",
 }
 
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- Table 8.2.3.12-1: Source field coding
 local source_code = {
     [0] = "Floor Participant",
@@ -156,6 +159,7 @@ local source_code = {
     [3] = "Non-Controlling MCPTT Function"
 }
 
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- 8.2.6.2 Rejection cause codes and rejection cause phrase
 local reject_cause = {
     [1] = "Another MCPTT client has permission",
@@ -168,6 +172,7 @@ local reject_cause = {
     [255] = "Other reason"
 }
 
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- 8.2.10.2 Floor revoke cause codes and revoke cause phrases
 local revoke_cause = {
     [1] = "Only one MCPTT client",
@@ -178,7 +183,7 @@ local revoke_cause = {
     [255] = "Other reason"
 }
 
--- 3GPP TS 24.380 version 13.0.2 Release 13
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- 8.3.3.3 MCPTT Session Identity field
 local session_type = {
     [0] = "No type",
@@ -187,14 +192,14 @@ local session_type = {
     [4] = "Chat"
 }
 
--- 3GPP TS 24.380 version 13.0.2 Release 13
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- 8.3.3.6 Answer State field
 local answer_state = {
     [0] = "Unconfirmed",
     [1] = "Confirmed"
 }
 
--- 3GPP TS 24.380 version 13.0.2 Release 13
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- 8.3.3.8 Reason Code field
 local reason_code = {
     [0] = "Accepted",
@@ -202,24 +207,22 @@ local reason_code = {
     [2] = "Not Accepted"
 }
 
--- 3GPP TS 24.380 version 13.2.0 Release 13
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- Table 8.4.2-1: MBMS subchannel control protocol messages
 local type_codes_cp = {
     [0] = "Map Group To Bearer",
     [1] = "Unmap Group To Bearer"
 }
 
--- 3GPP TS 24.380 version 13.2.0 Release 13
--- with TS 24.380 version 13.3.0 Release 13 changes
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- Table 8.4.3.1-2: MBMS subchannel control protocol specific fields
 local field_codes_cp = {
 	[0] = "Subchannel",
 	[1] = "TMGI",
 	[2] = "MCPTT Group ID",
-	[3] = "MCPTT Group ID"
 }
 
--- 3GPP TS 24.380 version 13.2.0 Release 13
+-- 3GPP TS 24.380 version 14.6.0 Release 14
 -- 8.4.3.3 MBMS Subchannel field
 local ip_version = {
 	[0] = "IP version 4",
@@ -235,7 +238,7 @@ local pf_reject_cause   = ProtoField.new ("Reject Cause", "mcptt.rejcause", ftyp
 local pf_revoke_cause   = ProtoField.new ("Revoke Cause", "mcptt.revcause", ftypes.UINT16, revoke_cause, base.DEC)
 local pf_reject_phrase  = ProtoField.new ("Reject Phrase", "mcptt.rejphrase", ftypes.STRING)
 local pf_queue_info     = ProtoField.uint16 ("mcptt.queue", "Queue place", base.DEC)
-local pf_queue_unknown  = ProtoField.new ("Queue place not kwnown", "mcptt.queue_unknown", ftypes.STRING)
+local pf_queue_unknown  = ProtoField.new ("Queue place not known", "mcptt.queue_unknown", ftypes.STRING)
 local pf_queue_prio     = ProtoField.uint16 ("mcptt.queueprio", "Queue Priority", base.DEC)
 local pf_granted_id     = ProtoField.new ("Granted Party's Identity", "mcptt.grantedid", ftypes.STRING)
 local pf_req_perm       = ProtoField.bool ("mcptt.reqperm", "Permission to Request the Floor")
@@ -245,6 +248,7 @@ local pf_sequence       = ProtoField.uint16 ("mcptt.sequence", "Sequence Number"
 local pf_queued_id      = ProtoField.new ("Queued User ID", "mcptt.queuedid", ftypes.STRING)
 local pf_source         = ProtoField.new ("Source", "mcptt.source", ftypes.UINT16, source_code, base.DEC)
 local pf_msg_type       = ProtoField.new ("Message ACK type", "mcptt.acktype", ftypes.UINT16, type_codes, base.DEC, 0x0700)
+local pf_ssrc           = ProtoField.uint32 ("mcptt.ssrc", "SSRC", base.HEX)
 
 local pf_indicators     = ProtoField.new ("Floor Indicator", "mcptt.indicator", ftypes.UINT16, nil, base.HEX)
 local pf_ind_normal     = ProtoField.new ("Normal", "mcptt.normal", ftypes.UINT16, nil, base.DEC, 0x8000)
@@ -252,6 +256,9 @@ local pf_ind_broad      = ProtoField.new ("Broadcast Group", "mcptt.broadcast", 
 local pf_ind_sys        = ProtoField.new ("System", "mcptt.system", ftypes.UINT16, nil, base.DEC, 0x2000)
 local pf_ind_emerg      = ProtoField.new ("Emergency", "mcptt.emergency", ftypes.UINT16, nil, base.DEC, 0x1000)
 local pf_ind_immin      = ProtoField.new ("Imminent Peril", "mcptt.imm_peril", ftypes.UINT16, nil, base.DEC, 0x0800)
+local pf_ind_queue      = ProtoField.new ("Queueing Supported", "mcptt.queue_supp", ftypes.UINT16, nil, base.DEC, 0x0400)
+local pf_ind_dual       = ProtoField.new ("Dual Floor", "mcptt.dual_floor", ftypes.UINT16, nil, base.DEC, 0x0200)
+local pf_ind_temp       = ProtoField.new ("Temporary Group Call", "mcptt.temp_groupcall", ftypes.UINT16, nil, base.DEC, 0x0100)
 
 local pf_debug          = ProtoField.uint16 ("mcptt.debug", "Debug", base.DEC)
 
@@ -276,7 +283,7 @@ local pf_ip_version     = ProtoField.new ("IP Version", "mcmc.ip_version", ftype
 local pf_floor_ctrl_port = ProtoField.new ("Floor Control Port", "mcmc.floor_ctrl_port", ftypes.UINT32)
 local pf_media_port     = ProtoField.new ("Media Port", "mcmc.media_port", ftypes.UINT32) 
 local pf_ipv4_addr      = ProtoField.new ("IPv4 Address", "mcmc.ipv4_address", ftypes.IPv4)
-local pf_ipv6_addr      = ProtoField.new ("IPv4 Address", "mcmc.ipv4_address", ftypes.IPv6)
+local pf_ipv6_addr      = ProtoField.new ("IPv6 Address", "mcmc.ipv6_address", ftypes.IPv6)
 	
 mcptt.fields = {
     pf_ackreq,
@@ -302,7 +309,11 @@ mcptt.fields = {
     pf_ind_sys,
     pf_ind_emerg,
     pf_ind_immin,
+    pf_ind_queue,
+    pf_ind_dual,
+    pf_ind_temp,
     pf_msg_type,
+    pf_ssrc,
     pf_debug
 }
 
@@ -334,13 +345,10 @@ mcptt_cp.fields = {
 }
 
 -- Expert info
-local ef_bad_field = ProtoExpert.new("mcptt.bad_field", "Field missing or malformed",
-                                     expert.group.MALFORMED, expert.severity.WARN)
-local ef_bad_field_pc = ProtoExpert.new("mcptt_pc.bad_field", "Field missing or malformed",
-                                  expert.group.MALFORMED, expert.severity.WARN)
-local ef_bad_field_cp = ProtoExpert.new("mcptt_cp.bad_field", "Field missing or malformed",
-                                  expert.group.MALFORMED, expert.severity.WARN)							  
-								  
+local ef_bad_field = ProtoExpert.new("mcptt.bad_field", "Field missing or malformed", expert.group.MALFORMED, expert.severity.WARN)
+local ef_bad_field_pc = ProtoExpert.new("mcptt_pc.bad_field", "Field missing or malformed", expert.group.MALFORMED, expert.severity.WARN)
+local ef_bad_field_cp = ProtoExpert.new("mcptt_cp.bad_field", "Field missing or malformed", expert.group.MALFORMED, expert.severity.WARN)
+
 
 mcptt.experts = {
     ef_bad_field
@@ -390,7 +398,19 @@ function mcptt.dissector(tvbuf,pktinfo,root)
 
     while pktlen_remaining > 0 do
         dprint2("PKT remaining: ", pktlen_remaining)
-        if pktlen_remaining < MIN_FIELD_LEN then
+        if pktlen_remaining < MIN_FIELD_LEN + 2 then
+            if (pos) % 4 ~= 0 then
+                local padding_bytes = 4 - ((pos) % 4)
+                for i = 0, padding_bytes -1, 1 do
+                    if tvbuf:range(pos,1):uint() == 0 then
+                        pos = pos + 1
+                    end
+                end
+                pktlen_remaining = pktlen - pos
+                if pktlen_remaining == 0 then
+                    return
+                end
+            end
             tree:add_proto_expert_info(ef_bad_field)
             return
         end
@@ -582,6 +602,9 @@ function mcptt.dissector(tvbuf,pktinfo,root)
             ind_tree:add(pf_ind_sys, tvbuf:range(pos,field_len))
             ind_tree:add(pf_ind_emerg, tvbuf:range(pos,field_len))
             ind_tree:add(pf_ind_immin, tvbuf:range(pos,field_len))
+            ind_tree:add(pf_ind_queue, tvbuf:range(pos,field_len))
+            ind_tree:add(pf_ind_dual, tvbuf:range(pos,field_len))
+            ind_tree:add(pf_ind_temp, tvbuf:range(pos,field_len))
             pos = pos + field_len
 
         elseif field_name == "User ID" then --TODO: Not Tested
@@ -599,6 +622,24 @@ function mcptt.dissector(tvbuf,pktinfo,root)
                 pos = pos +1
             end
 
+        elseif field_name == "SSRC" then
+            dprint2("============SSRC")
+            -- Get the field length (8 bits)
+            local field_len = tvbuf:range(pos,1):le_uint()
+            pos = pos +1
+
+            local padding = 0
+
+            -- Consume the possible padding
+            while pos < pktlen and tvbuf:range(pos,1):uint() == 0 and padding <= 2 do
+                pos = pos +1
+                padding = padding + 1
+            end
+            dprint2("Padding until: ", pos)
+
+            -- Add the SSRC to the tree
+            tree:add(pf_ssrc, tvbuf:range(pos,field_len-padding))
+            pos = pos + field_len - padding
         end
 
         pktlen_remaining = pktlen - pos
