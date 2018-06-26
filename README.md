@@ -9,7 +9,7 @@ Mission Critical Push To Talk (MCPTT) Wireshark dissector
 This MCPTT dissector is intended to provide supported protocol analyzers with a
 better understanding of the MCPTT protocol designed by 3GPP.
 
-This work was made to be conformant to 3GPP TS 24.380 version 13.3.0 Release 13.
+This work was made to be conformant to 3GPP TS 24.380 version 14.6.0 Release 14.
 
 The MCPTT dissector by Nemergent Initiative is under the GPLv3 license, please
 refer to the LICENSE.txt file for further information.
